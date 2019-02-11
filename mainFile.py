@@ -4,19 +4,27 @@ for i in range(5):
 
 
 import flask
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
+
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+    return render_template("index.html")
 
 
 @app.route("/About")
 def about():
-    return "About the website!"
+    return "<h1>About the website! Without any template<h1>"
 
-app.run()
+@app.route("/Test")
+def test():
+	name="var"
+	return render_template("test.html", name_t=name)
+
+
+
+app.run(debug=True)
 
 
 

@@ -5,6 +5,13 @@
 </head>
 <body>
 <p>This template is returned using a flask function</p><br>
+<ul>
+{% for item in l_t %}
+{% if item >2 %}
+    <li>{{ item }}</li>
+    {% endif %}
+{% endfor %}
+</ul>
 </body>
 </html>
 

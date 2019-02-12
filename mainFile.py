@@ -10,7 +10,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return render_template("index.html")
+
+
+	l_test=[1,2,3,4,5,6]
+	return render_template("index.html",l_t=l_test)
 
 
 @app.route("/About")
@@ -21,6 +24,12 @@ def about():
 def test():
 	name="var"
 	return render_template("test.html", name_t=name)
+
+@app.route("/Bootstrap")
+def bootstrap():
+	return render_template("bootstrap.html")
+
+
 
 
 

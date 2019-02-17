@@ -4,7 +4,8 @@
 	<title>Title of home page</title>
 </head>
 <body>
-<p>This template is returned using a flask function</p><br>
+	<img src="{{ url_for('static',filename='untitled.png') }}">
+	<p>This template is returned using a flask function</p><br>
 <ul>
 {% for item in l_t %}
 {% if item >2 %}
@@ -12,6 +13,23 @@
     {% endif %}
 {% endfor %}
 </ul>
+<p id='w'></p>
+
+<!-- <script>
+text='<ul>';
+L=['A','B','C']
+for (i=0; i<L.length; i++)
+{
+	text+='<li>'+L[i]+'</li>';
+}
+
+text+='<ul>';
+
+document.getElementById("w").innerHTML=text;
+
+</script>
+ -->
+
+{% block title %}Index{% endblock %}
 </body>
 </html>
-

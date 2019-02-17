@@ -18,16 +18,24 @@ def hello():
 
 @app.route("/About")
 def about():
-    return "<h1>About the website! Without any template<h1>"
+    return "<h1>About the website! Without any template</h1>"
 
 @app.route("/Test")
 def test():
+	l_test=[1,2,3,4,5,6]
 	name="var"
-	return render_template("test.html", name_t=name)
+	return render_template("test.html",l_t=l_test, name_t=name)
+
 
 @app.route("/Bootstrap")
 def bootstrap():
 	return render_template("bootstrap.html")
+
+
+	
+
+
+
 
 
 

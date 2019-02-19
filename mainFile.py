@@ -5,8 +5,18 @@ for i in range(5):
 
 import flask
 from flask import Flask, render_template
-app = Flask(__name__)
+import flask_sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/test_database'
+db = SQLAlchemy(app)
+
+
+'''app -> mysql database'''
+'''db -> app'''
+'''db-> mysql'''
 
 @app.route("/")
 def hello():

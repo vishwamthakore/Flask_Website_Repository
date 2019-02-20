@@ -18,6 +18,25 @@ db = SQLAlchemy(app)
 '''db -> app'''
 '''db-> mysql'''
 
+class Testing_table(db.Model):
+    # sno title content
+
+    sno = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    content = db.Column(db.String(120), nullable=False)
+
+
+
+entry = Testing_table(sno=5, title='test', content='testing connectivity')
+print('aaaaaaa')
+db.session.add(entry)
+db.session.commit()
+
+
+
+
+
+
 @app.route("/")
 def hello():
 
@@ -43,15 +62,7 @@ def bootstrap():
 
 
 	
-
-
-
-
-
-
-
-
-app.run(debug=True)
+app.run(debug=True,use_reloader=False)
 
 
 

@@ -4,7 +4,7 @@ for i in range(5):
 
 
 import flask
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import flask_sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
 
@@ -27,14 +27,10 @@ class Testing_table(db.Model):
 
 
 
-entry = Testing_table(sno=5, title='test', content='testing connectivity')
-print('aaaaaaa')
-db.session.add(entry)
-db.session.commit()
-
-
-
-
+# entry = Testing_table(sno=5, title='test', content='testing connectivity')
+# print('aaaaaaa')
+# db.session.add(entry)
+# db.session.commit()
 
 
 @app.route("/")
@@ -60,9 +56,21 @@ def test():
 def bootstrap():
 	return render_template("bootstrap.html")
 
+@app.route('/Form', methods=['GET', 'POST'])
+def hell():
+	if request.method=="POST":
+		nm=request.form['n']
+		return "The name is {}".format(nm)
 
-	
-app.run(debug=True,use_reloader=False)
+	return render_template("test_form.html")
+    
+
+
+
+
+
+
+app.run(debug=True, use_reloader=False)
 
 
 

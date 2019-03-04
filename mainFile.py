@@ -2,7 +2,6 @@ print("hello")
 for i in range(5):
 	print(i)
 
-
 import flask
 from flask import Flask, render_template, request
 import flask_sqlalchemy
@@ -104,8 +103,19 @@ def upload():
 
 
 
-@app.route("/Output")
+@app.route("/Output", methods=['POST','GET'])
 def fetch_from_db():
+	if request.method=="POST":
+
+		serial=request.form["firstname"]
+		entry_del = Testing_table.query.filter_by(sno=int(serial)).first()
+
+		var=entry_del.title
+
+		db.session.delete(entry_del)
+		db.session.commit()
+
+		return "delete {} {}".format(serial,var)
 
 	row1=Testing_table.query.first()
 
@@ -113,14 +123,59 @@ def fetch_from_db():
 	return render_template("output.html",r1=row1, r=rows)
 
 
-@app.route("/jk")
+
+@app.route('/Edit', methods=['GET',"POST"])
+def edit():
+	if request.method=="POST":
+		serial_number=request.form['firstname']
+		entry_edit=Testing_table.query.filter_by(sno=int(serial_number)).first()
+		
+		return render_template("edit.html", ent=entry_edit)
+
+
+	return render_template("output.html")
+
+
+@app.route("/EditDone", methods=['GET', 'POST'])
+def edit_done():
+
+	if request.method=="POST":
+		edited_sno=request.form["serial"]
+		edited_title=request.form["n"]
+		edited_content=request.form["q"]
+
+		entry_edited=Testing_table.query.filter_by(sno=int(edited_sno)).first()
+		
+		entry_edited.title=edited_title
+		entry_edited.content=edited_content
+
+		db.session.commit()
+		return "edited"
+
+
+
+
+
+
+	return render_template("edit.html")
+
+
+
+
+
+
+
+@app.route("/jk", methods=['GET', 'POST'])
 def j():
-	return 'jqqqqqqqq'
+
+	return 'jppppppqweti'
 
 
 
 
-app.run(debug=True, use_reloader=False)
+
+
+app.run(debug=True, use_reloader=True)
 
 # , host='0.0.0.0'
 

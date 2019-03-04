@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Output Title</title>
+</head>
+<body>
+	{{ r1.sno }}
+	<br>
+	{{ r1.title }}
+	<br>
+	{{ r1.content }}
+	<br>
+	
+	<h1>Complete Tabla</h1>
+
+	{% for i in r %}
+
+	<p>
+	{{ i.sno }}
+	<br>
+	{{ i.title }}
+	<br>
+	{{ i.content }}
+	<br>
+	<form action="/Output" method="POST">
+
+		<input type="text" name="firstname" value={{ i.sno }}>	
+		<button type="submit" name="btn"> Delete Entry </button>
+	</form>
+
+	<form action="/Edit" method="POST">
+	<input type="text" name="firstname" value={{ i.sno }}>	
+	<button type="submit" name="btn"> Edit Entry </button>
+
+	</form>
+</p>
+
+	{% endfor %}
+
+
+
+</body>
+</html>
